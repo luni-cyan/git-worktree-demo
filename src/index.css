@@ -4,6 +4,7 @@
 
 /* --- CSS Custom Properties --- */
 :root {
+  color-scheme: dark;
   /* Colors */
   --color-bg: #0a0e1a;
   --color-bg-elevated: #111827;
@@ -30,6 +31,11 @@
 
   --color-border: rgba(148, 163, 184, 0.12);
   --color-border-hover: rgba(148, 163, 184, 0.25);
+
+  --color-navbar-bg: rgba(10, 14, 26, 0.8);
+  --color-overlay: rgba(17, 24, 39, 0.85);
+  --color-control-bg: rgba(148, 163, 184, 0.08);
+  --color-control-bg-hover: rgba(148, 163, 184, 0.14);
 
   /* Typography */
   --font-sans: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
@@ -82,6 +88,35 @@
   /* Layout */
   --container-max: 1200px;
   --navbar-height: 72px;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --color-bg: #f8fafc;
+  --color-bg-elevated: #ffffff;
+  --color-bg-card: #ffffff;
+  --color-bg-card-hover: #f1f5f9;
+  --color-surface: #f1f5f9;
+
+  --color-primary-glow: rgba(99, 102, 241, 0.18);
+
+  --color-text: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #f8fafc;
+
+  --color-border: rgba(15, 23, 42, 0.1);
+  --color-border-hover: rgba(15, 23, 42, 0.18);
+
+  --color-navbar-bg: rgba(248, 250, 252, 0.78);
+  --color-overlay: rgba(255, 255, 255, 0.78);
+  --color-control-bg: rgba(15, 23, 42, 0.04);
+  --color-control-bg-hover: rgba(15, 23, 42, 0.06);
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.1);
+  --shadow-lg: 0 16px 48px rgba(15, 23, 42, 0.14);
 }
 
 /* --- Reset & Base --- */
@@ -256,7 +291,7 @@ button {
   right: 0;
   height: var(--navbar-height);
   z-index: 1000;
-  background: rgba(10, 14, 26, 0.8);
+  background: var(--color-navbar-bg);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
 }
@@ -285,6 +320,35 @@ button {
   display: flex;
   align-items: center;
   gap: var(--space-8);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-control-bg);
+  color: var(--color-text);
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  background: var(--color-control-bg-hover);
+  border-color: var(--color-border-hover);
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--color-primary-glow);
+}
+
+.theme-toggle__icon {
+  width: 18px;
+  height: 18px;
 }
 
 .navbar__list {
@@ -1254,7 +1318,7 @@ button {
   transform: translateX(-50%);
   width: 90%;
   max-width: 600px;
-  background: rgba(17, 24, 39, 0.85);
+  background: var(--color-overlay);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
